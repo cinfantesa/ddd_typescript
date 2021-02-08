@@ -1,7 +1,14 @@
-import express = require('express');
+import 'reflect-metadata';
+import {InversifyExpressServer} from 'inversify-express-utils';
+import bodyParser from 'body-parser';
+import './infrastructure/rest/put-register-user-controller';
+import ContainerConfiguration from './container-configuration';
 
-const app:express.Application = express();
+let server: InversifyExpressServer = new InversifyExpressServer(new ContainerConfiguration().container);
+server.setConfig((app) => {
+    app.use(bodyParser.json());
+});
 
-app.get('/', (req, res) => res.send('Hello World!'));
+server.build().listen(3000);
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+console.log('Server started on port 3000');
