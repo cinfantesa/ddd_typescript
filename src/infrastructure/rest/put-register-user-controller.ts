@@ -1,5 +1,5 @@
 import {inject} from 'inversify';
-import {controller, httpPost, request, response} from 'inversify-express-utils';
+import {controller, httpPost} from 'inversify-express-utils';
 import RegisterUser from '../../application/register-user/register-user';
 import RegisterUserRequest from './register-user-request';
 import validationMiddleware from './middleware/validation-middleware';
@@ -11,7 +11,7 @@ export class PutRegisterUserController {
     }
 
     @httpPost('/', validationMiddleware(RegisterUserRequest))
-    public async get(@request() req: Request, @response() res: Response) {
+    public async get(request: Request, response: Response) {
         this.registerUser.register();
         return { status: 'OK' };
     }
