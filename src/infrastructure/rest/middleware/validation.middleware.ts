@@ -2,7 +2,7 @@ import {validate, ValidationError} from 'class-validator';
 import * as express from 'express';
 import HttpException from '../http-exception';
 
-export default function validationMiddleware(): express.RequestHandler {
+export default function validateBody(): express.RequestHandler {
     return (req, res, next) => {
         validate(req.body)
             .then((errors: ValidationError[]) => {
