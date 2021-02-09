@@ -1,16 +1,16 @@
 import {inject} from 'inversify';
-import {controller, httpPost, request, requestBody, response} from 'inversify-express-utils';
+import {controller, httpPost, request, response} from 'inversify-express-utils';
 import RegisterUser from '../../application/register-user/register-user';
-import {check} from 'express-validator';
-
-const VALIDATIONS = [check('id').notEmpty()];
+import RegisterUserRequest from './register-user-request';
+import validationMiddleware from './middleware/validation-middleware';
+import {Request, Response} from 'express';
 
 @controller('/')
 export class PutRegisterUserController {
     constructor(@inject('registerUser') private registerUser: RegisterUser) {
     }
 
-    @httpPost('/', ...VALIDATIONS)
+    @httpPost('/', validationMiddleware(RegisterUserRequest))
     public async get(@request() req: Request, @response() res: Response) {
         this.registerUser.register();
         return { status: 'OK' };
