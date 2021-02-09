@@ -1,7 +1,7 @@
 import {Container} from 'inversify';
 import RegisterUser from './application/register-user/register-user';
-import UserRepository from './domain/user-repository';
-import ConsoleUserRepository from './infrastructure/persistence/console-user-repository';
+import UserRepository from './domain/user.repository';
+import ConsoleUserRepository from './infrastructure/persistence/console-user.repository';
 
 export default class ContainerConfiguration {
     private readonly _container: Container;

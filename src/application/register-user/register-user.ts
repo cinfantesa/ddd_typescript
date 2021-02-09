@@ -1,5 +1,5 @@
 import {inject, injectable} from 'inversify';
-import UserRepository from '../../domain/user-repository';
+import UserRepository from '../../domain/user.repository';
 
 @injectable()
 export default class RegisterUser {
