@@ -4,9 +4,12 @@ export default class Name {
     private _name!: string;
     private _firstSurname!: string;
 
-    constructor({name, firstSurname}: {name: string, firstSurname: string}) {
+    constructor({name, firstSurname}: {name: string, firstSurname?: string}) {
         this.name = name;
-        this.firstSurname = firstSurname;
+
+        if (firstSurname) {
+            this.firstSurname = firstSurname;
+        }
     }
 
     set name(value: string) {
