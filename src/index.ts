@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import './infrastructure/rest/put-register-user.controller';
 import ContainerConfiguration from './container.configuration';
 
-let server: InversifyExpressServer = new InversifyExpressServer(new ContainerConfiguration().container);
+const server: InversifyExpressServer = new InversifyExpressServer(new ContainerConfiguration().container);
 server.setConfig((app) => {
     app.use(bodyParser.json());
 });

@@ -19,12 +19,12 @@ export default class Name {
         this._name = value;
     }
 
-    set firstSurname(value: string) {
-        this._firstSurname = value;
-    }
-
     get name(): string {
         return this._name;
+    }
+
+    set firstSurname(value: string) {
+        this._firstSurname = value;
     }
 
     get firstSurname(): string {
