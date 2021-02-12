@@ -6,7 +6,7 @@ import ContainerConfiguration from './container.configuration';
 
 const server: InversifyExpressServer = new InversifyExpressServer(new ContainerConfiguration().container);
 server.setConfig((app) => {
-    app.use(bodyParser.json());
+  app.use(bodyParser.json());
 });
 
 server.build().listen(3000);

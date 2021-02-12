@@ -7,27 +7,27 @@ import User from '../../domain/user';
 
 @injectable()
 export default class RegisterUser {
-    constructor(@inject('userRepository') private userRepository: UserRepository) {
-    }
+  constructor(@inject('userRepository') private userRepository: UserRepository) {
+  }
 
-    async register(command: RegisterUserCommand): Promise<void> {
-        await this._ensureUserDoesNotExist(command.username);
-        const name = new Name({
-            name: command.name,
-            firstSurname: command.firstSurname,
-        });
-        const user = new User({
-            username: command.username,
-            name,
-            mail: command.mail
-        });
+  async register(command: RegisterUserCommand): Promise<void> {
+    await this._ensureUserDoesNotExist(command.username);
+    const name = new Name({
+      name: command.name,
+      firstSurname: command.firstSurname,
+    });
+    const user = new User({
+      username: command.username,
+      name,
+      mail: command.mail
+    });
 
-        await this.userRepository.save(user);
-    }
+    await this.userRepository.save(user);
+  }
 
-    private async _ensureUserDoesNotExist(username: string): Promise<void> {
-        if (await this.userRepository.existsByUsername(username)) {
-            throw new UserAlreadyExists();
-        }
+  private async _ensureUserDoesNotExist(username: string): Promise<void> {
+    if (await this.userRepository.existsByUsername(username)) {
+      throw new UserAlreadyExists();
     }
+  }
 }

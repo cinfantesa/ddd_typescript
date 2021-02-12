@@ -9,25 +9,25 @@ import RegisterUserCommand from '../../application/register-user/register-user.c
 
 @controller('/')
 export class PutRegisterUserController {
-    constructor(@inject('registerUser') private registerUser: RegisterUser) {
-    }
+  constructor(@inject('registerUser') private registerUser: RegisterUser) {
+  }
 
-    @httpPost('/', parseBody(RegisterUserRequest), validateBody())
-    public async get(request: Request, response: Response, next: NextFunction) {
-        const body: RegisterUserRequest = request.body;
-        const command = new RegisterUserCommand({
-            username: body.username,
-            mail: body.mail,
-            name: body.name,
-            firstSurname: body.firstSurname
-        });
+  @httpPost('/', parseBody(RegisterUserRequest), validateBody())
+  public async get(request: Request, response: Response, next: NextFunction) {
+    const body: RegisterUserRequest = request.body;
+    const command = new RegisterUserCommand({
+      username: body.username,
+      mail: body.mail,
+      name: body.name,
+      firstSurname: body.firstSurname
+    });
 
-        try {
-            await this.registerUser.register(command);
-            return response.status(200).json({ status: 'OK' });
-        } catch (err) {
-            console.error(err);
-            next();
-        }
+    try {
+      await this.registerUser.register(command);
+      return response.status(200).json({status: 'OK'});
+    } catch (err) {
+      console.error(err);
+      next();
     }
+  }
 }
