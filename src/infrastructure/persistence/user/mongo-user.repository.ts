@@ -11,7 +11,7 @@ export default class MongoUserRepository implements UserRepository {
   private mongooseUserModel: Model<UserDocument & Document>;
 
   constructor(
-    @inject('mongooseUserModel') mongooseUserRepository: MongooseUserRepository,
+    @inject('mongooseUserRepository') mongooseUserRepository: MongooseUserRepository,
     @inject('userEntityParser') private userEntityParser: UserEntityParser
   ) {
     this.mongooseUserModel = mongooseUserRepository.model;

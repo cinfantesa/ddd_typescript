@@ -1,28 +1,28 @@
-import * as Mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-let database: Mongoose.Connection;
+let database: mongoose.Connection;
 
 export const connect = async () => {
-  const uri = "mongodb+srv://admin:admin@localhost/user?retryWrites=true&w=majority";
+  const uri = 'mongodb://localhost/user';
   if (database) {
     return;
   }
 
-  await Mongoose.connect(uri, {
+  await mongoose.connect(uri, {
     useNewUrlParser: true,
     useFindAndModify: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
   });
 
-  database = Mongoose.connection;
+  database = mongoose.connection;
 
-  database.once("open", async () => {
-    console.log("Connected to database");
+  database.once('open', async () => {
+    console.log('Connected to database');
   });
 
-  database.on("error", () => {
-    console.log("Error connecting to database");
+  database.on('error', () => {
+    console.log('Error connecting to database');
   });
 };
 
@@ -31,5 +31,5 @@ export const disconnect = async () => {
     return;
   }
 
-  await Mongoose.disconnect();
+  await mongoose.disconnect();
 };
