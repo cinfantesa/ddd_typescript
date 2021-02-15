@@ -18,13 +18,11 @@ export default class MongoUserRepository implements UserRepository {
   }
 
   async existsByUsername(username: string): Promise<boolean> {
-    console.log('exists');
     return this.mongooseUserModel.exists({username});
   }
 
   async save(user: User): Promise<void> {
     const document: UserDocument = this.userEntityParser.toEntity(user);
     await this.mongooseUserModel.create(document);
-    console.log('saved');
   }
 } 
