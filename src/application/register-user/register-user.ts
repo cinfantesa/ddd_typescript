@@ -12,6 +12,7 @@ export default class RegisterUser {
 
   async register(command: RegisterUserCommand): Promise<void> {
     await this._ensureUserDoesNotExist(command.username);
+
     const name = new Name({
       name: command.name,
       firstSurname: command.firstSurname,
