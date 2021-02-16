@@ -1,4 +1,6 @@
 import Name from './name';
+import EmailIsRequired from './error/email-is-required';
+import UsernameIsRequired from './error/username-is-required';
 
 export default class User {
   private _username!: string;
@@ -16,6 +18,9 @@ export default class User {
   }
 
   set username(value: string) {
+    if (!value) {
+      throw new UsernameIsRequired('Username is required');
+    }
     this._username = value;
   }
 
@@ -24,6 +29,9 @@ export default class User {
   }
 
   set mail(value: string) {
+    if (!value) {
+      throw new EmailIsRequired('Email is required');
+    }
     this._mail = value;
   }
 
