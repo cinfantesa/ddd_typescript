@@ -25,6 +25,7 @@
     "inversify-binding-decorators": "^4.0.0",
     "inversify-express-utils": "^6.3.2",
     "mongoose": "^5.11.16",
+    "node-graceful-shutdown": "^1.1.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^9.1.1"
   },
